@@ -1,0 +1,10 @@
+(ql:quickload "trivial-shell")
+(ql:quickload "fare-csv")
+(ql:quickload "cl-fad")
+(ql:quickload :matlab)
+
+(cl-lite "D:/ftian/Dropbox/GDL/gdl/program/Projects/Functions")
+(cl-lite "D:/ftian/Dropbox/GDL/gdl/program/Projects/Toothbrush")  ;; desktop
+
+(cl-lite "D:/Dropbox/GDL/gdl/program/Projects/Functions")
+(cl-lite "D:/Dropbox/GDL/gdl/program/Projects/Toothbrush")  ;; laptop
