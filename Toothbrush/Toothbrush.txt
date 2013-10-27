@@ -6,5 +6,5 @@
 (ql:quickload "cl-fad")
 (ql:quickload :matlab)
 
-(cl-lite (merge-pathnames "Projects/Functions" glisp:*gdl-home*))
-(cl-lite (merge-pathnames "Projects/Toothbrush" glisp:*gdl-home*))
+(cl-lite (merge-pathnames "Projects/Functions" *default-pathname-defaults*))
+(cl-lite (merge-pathnames "Projects/Toothbrush" *default-pathname-defaults*))
