@@ -1,10 +1,10 @@
+(load (merge-pathnames "quicklisp/asdf.lisp" glisp:*gdl-home*))
+(load (merge-pathnames "quicklisp/setup.lisp" glisp:*gdl-home*))
+
 (ql:quickload "trivial-shell")
 (ql:quickload "fare-csv")
 (ql:quickload "cl-fad")
 (ql:quickload :matlab)
 
-(cl-lite "D:/ftian/Dropbox/GDL/gdl/program/Projects/Functions")
-(cl-lite "D:/ftian/Dropbox/GDL/gdl/program/Projects/Toothbrush")  ;; desktop
-
-(cl-lite "D:/Dropbox/GDL/gdl/program/Projects/Functions")
-(cl-lite "D:/Dropbox/GDL/gdl/program/Projects/Toothbrush")  ;; laptop
+(cl-lite (merge-pathnames "Projects/Functions" glisp:*gdl-home*))
+(cl-lite (merge-pathnames "Projects/Toothbrush" glisp:*gdl-home*))
