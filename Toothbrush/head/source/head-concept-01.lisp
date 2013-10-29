@@ -86,6 +86,22 @@
    ;; volume [cm^3]
    (volume (/ (+ (getf (the motor-cylinder poly-brep brep precise-properties-plist) :volume)
 		 (getf (the head-extruded poly-brep brep precise-properties-plist) :volume)) 1000))
+   ;; surface for clearance-swept-solid
+   (face-for-cle-dis (mapcar #'(lambda(face)
+				 (list (the-object face index)
+				       (3d-distance (the motor-cylinder center)
+						    (apply #'midpoint  (the-object face bounding-box)))))
+			     (list-elements (the motor-cylinder faces))))
+   (face-for-cle-index (first (least #'second (the face-for-cle-dis))))
+   (face-for-clearance (the motor-cylinder (faces (the face-for-cle-index))))
+   ;; edges for bristle
+   (edges-for-bri-dis (mapcar #'(lambda(face)
+				 (list (the-object face index)
+				       (* -1 (3d-distance (the head-ellipse center)
+							  (apply #'midpoint  (the-object face bounding-box))))))
+			     (list-elements (the head-extruded faces))))
+   (edges-for-bri-index (first (least #'second (the edges-for-bri-dis))))
+   (edges-for-bri (the head-extruded (edges (the edges-for-bri-index))))
    )
   :objects
   (   

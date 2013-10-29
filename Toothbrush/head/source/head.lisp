@@ -21,25 +21,18 @@
 	     ((string= (the concept-path) "02" :start1 12 :end1 14) 2)
 	     (t 1)))
    (bristle-curve (case (the select)
-			  (1 (list
-			      (nth  1  (list-elements (the concept-01 head-extruded edges)))))
-			  (2 (list
-			      (nth 4 (list-elements (the concept-02 head-extruded edges)))
-			      (nth 5 (list-elements (the concept-02 head-extruded edges)))
-			      (nth 6 (list-elements (the concept-02 head-extruded edges)))
-			      (nth 7 (list-elements (the concept-02 head-extruded edges)))
-			       ))
+			  (1 (list (the concept-01 edges-for-bri)))
+			  (2 (the concept-02 edges-for-bri))
 			  (otherwise 
-			   (list
-			      (nth  1  (list-elements (the concept-01 head-extruded edges)))))))
+			   (list (the concept-01 edges-for-bri)))))
    (clearance-curve-surface (case (the select)
-			      (1 (nth 1 (list-elements (the concept-01 motor-cylinder faces))))
-			      (2 (nth 2 (list-elements (the concept-02 head-extruded faces))))
-			      (otherwise (nth 1 (list-elements (the concept-01 motor-cylinder faces))))))
+			      (1 (the concept-01 face-for-clearance))
+			      (2 (the concept-02 face-for-clearance))
+			      (otherwise (the concept-01 face-for-clearance))))
    (clearance-trimmed-island (case (the select)
-			      (1 (the clearance-curve (3d-curve 1)))
-			      (2 (the clearance-curve (3d-curve 0)))
-			      (otherwise (the clearance-curve (3d-curve 1)))))
+			      (1 (the clearance-curve (curves 1)))
+			      (2 (the clearance-curve (curves 0))) 
+			      (otherwise (the clearance-curve (curves 1)))))
    (head-bounding-box (case (the select)
 			(1 (list 
 			    (nth 0 (bounding-box-distance (the concept-01 head-extruded bounding-box)))
@@ -86,9 +79,10 @@
 			    t)
 	       )
    (clearance-curve :type 'projected-curves
-		    :curve-in (first (last (list-elements (the neck concept-01 circles)))) ; refer to the neck toppest circle
+		    :curve-in (nth 3 (list-elements (the neck concept-01 circles))) ; refer to the neck toppest circle
 		    :surface (the clearance-curve-surface)  ; refer to the head circular surface
 		    :projection-vector (make-vector 0 0 1)
+		    :approximation-tolerance 0.0001
 		    :hidden? t
 		    )
    (clearance-trimmed :type 'trimmed-surface

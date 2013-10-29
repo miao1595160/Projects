@@ -139,10 +139,18 @@
 		   :surface (the based-surface)
 		   :projection-vector (make-vector 0 1 0)
 		   :hidden? t
+		   :approximation-tolerance 0.0001
 		   )
+   (line-top  :type 'boxed-curve
+	      :curve-in (the line-projected (curves 1))
+	      :center (translate (the-child curve-in center) 
+				 :front (the height))
+	      :display-controls (list :color :blue)
+	      :hidden? t
+	      )
    (line-trimmed :type 'trimmed-surface
 		 :basis-surface (the based-surface)
-		 :island (the line-projected (3d-curve 1))
+		 :island (the line-projected (curves 1))
 		 :hidden? t
 		 ;; :display-controls (list :color :yellow :line-thickness 1)
 		 )

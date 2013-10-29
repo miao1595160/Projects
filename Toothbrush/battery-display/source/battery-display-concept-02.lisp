@@ -129,7 +129,7 @@
 		     :hidden? t
 		     )
    (button-trimmed :type 'trimmed-surface
-		   :island (the button-projected (3d-curve 1))
+		   :island (the button-projected (curves 1))
 		   :basis-surface (the based-surface)
 		   :hidden? t
 		   )

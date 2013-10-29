@@ -86,6 +86,27 @@
 		       (t (the material plastic cost))))
    ;; volume [cm^3]
    (volume (/ (getf (the head-extruded poly-brep brep precise-properties-plist) :volume) 1000))
+   ;; surface for clearance-swept-solid
+   (face-for-cle-dis (mapcar #'(lambda(face)
+				 (list (the-object face index)
+				       (3d-distance (the center) 
+						    (apply #'midpoint  (the-object face bounding-box)))))
+			     (list-elements (the head-extruded faces))))
+   (face-for-cle-index (first (least #'second (the face-for-cle-dis))))
+   (face-for-clearance (the head-extruded (faces (the face-for-cle-index))))
+   ;; edges for bristle
+   (face-for-bri-ref (translate (the-object (nth 3 (list-elements (the neck concept-01 circles))) center) 
+				 :up (+ (half (3d-distance (the center-01) (the center-02)))
+					(the r2))
+				 :front (first (last (list-elements (the neck concept-01 circles) (the-element radius))))))
+   (face-for-bri-dis (mapcar #'(lambda(face)
+				  (list (the-object face index)
+					(3d-distance (the face-for-bri-ref)
+						     (apply #'midpoint  (the-object face bounding-box)))))
+			      (list-elements (the head-extruded faces))))
+   (face-for-bri-index (first (least #'second (the face-for-bri-dis))))
+   (face-for-bri (the head-extruded (faces (the face-for-bri-index))))
+   (edges-for-bri (list-elements (the face-for-bri edges)))
    )
   :objects
   (   
@@ -106,4 +127,3 @@
    
    )
   )
-

@@ -126,10 +126,11 @@
 		     :surface (the based-surface)
 		     :projection-vector (make-vector 0 1 0)
 		     :display-controls (list :color :red :line-thickness 1)
+		     :approximation-tolerance 0.0001
 		     :hidden? t
 		     )
    (button-trimmed :type 'trimmed-surface
-		   :island (the button-projected (3d-curve 1))
+		   :island (the button-projected (curves 1))
 		   :basis-surface (the based-surface)
 		   :hidden? t
 		   )
