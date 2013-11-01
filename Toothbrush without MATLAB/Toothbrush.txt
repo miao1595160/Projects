@@ -1,0 +1,8 @@
+(load (merge-pathnames "quicklisp/asdf.lisp" glisp:*gdl-home*))
+(load (merge-pathnames "quicklisp/setup.lisp" glisp:*gdl-home*))
+
+(ql:quickload "trivial-shell")
+(ql:quickload "fare-csv")
+(ql:quickload "cl-fad")
+
+(cl-lite (merge-pathnames "Projects/Toothbrush" *default-pathname-defaults*))
