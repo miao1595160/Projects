@@ -31,9 +31,9 @@ Head_xyz = [0 0 Drive_length+Dis_main_crank];
 Body_mass = 1;
 Body_inertia = eye(3);
 % start simulation
-% open E_Toothbrush_01
+open E_Toothbrush_01
 sim E_Toothbrush_01
-% close_system('E_Toothbrush_01')
+close_system('E_Toothbrush_01')
 head_angle = (max(simout_head_angle) - min(simout_head_angle))/2;
 swing_frequency = max(simout_swing_frequency);
 motor_speed = simout_motor_speed(end);
