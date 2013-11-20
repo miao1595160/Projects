@@ -4,7 +4,7 @@
   :computed-slots
   (
    ;; message requirment summary
-   (*M1-constraint-requirement-requirement-summary (format nil "~{~{~A ~}~%~}" 
+   (*M1-constraint-requirement-summary (format nil "~{~{~A ~}~%~}" 
 				   (mapcar #'list (list (the constraint requirement-target-user)
 							(the constraint requirement-type-of-technology)
 							(the constraint requirement-features)

@@ -89,7 +89,7 @@
 	       )
    (MATLAB :type 'matlab
 	   )
-   (messages :type 'message
+   (message :type 'message
 	     :display-controls (list :color :blue)
 	     )
    )
